@@ -1,4 +1,4 @@
-/* {
+{
   const rain = Math.round(Math.random());
 
   if (rain === 1) {
@@ -8,9 +8,9 @@
   if (rain === 0) {
     console.log("Дождя нет");
   }
-} */
+}
 
-/* {
+{
   const math = +prompt("Введите количество баллов по математике", 85);
   const rusLanguage = +prompt(
     "Введите количество баллов по русскому языку",
@@ -25,7 +25,7 @@
   } else {
     console.log("Вы не поступили");
   }
-} */
+}
 
 {
   const clientMoney = +prompt("Сколько вы хотите снять денег?", 400);
