@@ -92,17 +92,8 @@
         ) {
           result.player++;
           return start();
-        } else if (
-          (computerChoiceFirstLetter === gameLanguage[0][0] &&
-            userChoiceFirstLetter === gameLanguage[1][0]) ||
-          (computerChoiceFirstLetter === gameLanguage[1][0] &&
-            userChoiceFirstLetter === gameLanguage[2][0]) ||
-          (computerChoiceFirstLetter === gameLanguage[2][0] &&
-            userChoiceFirstLetter === gameLanguage[0][0])
-        ) {
-          result.computer++;
-          return start();
         } else {
+          result.computer++;
           return start();
         }
         // END battle logic
