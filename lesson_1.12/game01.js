@@ -4,7 +4,8 @@ const gameBotRecursion = (botNumber) => {
   let userNumber = prompt('Choose your number', 10);
 
   if (userNumber === null) {
-    return 'Game over';
+    console.log('Game over');
+    return true;
   }
 
   if (isNaN(userNumber)) {
@@ -25,7 +26,8 @@ const gameBotRecursion = (botNumber) => {
   }
 
   if (userNumber === botNumber) {
-    return 'Great!';
+    console.log('Great!');
+    return true;
   }
 };
 
@@ -33,7 +35,7 @@ const gameBot = () => {
   const botNumber = Math.ceil(Math.random() * 100);
   console.log(botNumber);
 
-  console.log(gameBotRecursion(botNumber));
+  gameBotRecursion(botNumber);
 };
 
 gameBot();

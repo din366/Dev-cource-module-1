@@ -6,24 +6,26 @@
     'scissors',
     'paper',
     'Rock, scissors or paper?',
-    'Are you sure you want to exit?',
+    'Do you want to finish and go to the next stage?',
     'You win!',
     'You lose :(',
     'Draw!',
     'Gamer',
     'Computer',
+    'Play again to advance to the next game?',
   ];
   const FIGURES_RUS = [
     'камень',
     'ножницы',
     'бумага',
     'Камень, ножницы или бумага?',
-    'Вы уверены что хотите выйти?',
+    'Вы хотите закончить и пойти на следующий этап?',
     'Вы выиграли!',
     'Вы проиграли :(',
     'Ничья!',
     'Игрок',
     'Компьютер',
+    'Сыграть еще раз, чтобы пройти на следующую игру?',
   ];
 
   const getRandomIntInclusive = (min, max) => {
@@ -39,12 +41,15 @@
   };
 
   const game = (choiceUserLanguage) => {
+    if (choiceUserLanguage === null) {
+      return null;
+    }
     const result = {
       player: 0,
       computer: 0,
     };
 
-    const gameLanguage = setGameLanguage(choiceUserLanguage);
+    const gameLanguage = setGameLanguage(choiceUserLanguage.toUpperCase());
 
     return function start() {
       const userСhoice = prompt(gameLanguage[3]);
@@ -55,10 +60,13 @@
           let resultGame = null;
           if (result.player > result.computer) {
             resultGame = `${gameLanguage[5]}`;
+            window.resultRpsGame = 'playerWin';
           } else if (result.player < result.computer) {
             resultGame = `${gameLanguage[6]}`;
+            window.resultRpsGame = 'computerWin';
           } else {
             resultGame = `${gameLanguage[7]}`;
+            window.resultRpsGame = 'draw';
           }
           console.log(`${resultGame}
           ${gameLanguage[8]}: ${result.player}
