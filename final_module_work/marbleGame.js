@@ -28,11 +28,17 @@
 
         let playAgain = null;
         if (computerMarble <= 0) {
-          console.warn('Вы выиграли!');
+          alert('Вы выиграли!');
+          document.querySelector('#resultMarbles').textContent =
+            'В последней игре вы выиграли!';
+          document.querySelector('#game_mainwrapper').style.display = 'flex';
           playAgain = confirm('Вы хотите сыграть еще?');
           playAgainFirstMoveChoice(playAgain, 'playerWin', playerMove);
         } else if (userMarble <= 0) {
-          console.error('Вы проиграли!');
+          alert('Вы проиграли!');
+          document.querySelector('#resultMarbles').textContent =
+            'В последней игре вы проиграли';
+          document.querySelector('#game_mainwrapper').style.display = 'flex';
           playAgain = confirm('Вы хотите сыграть еще?');
           playAgainFirstMoveChoice(playAgain, 'computerWin', computerMove);
         } else return whoseMoveFn();
@@ -43,13 +49,21 @@
         if (thinkNumber % 2 === guessesNumber % 2) {
           gameInfo.computerMarble += +thinkNumber;
           gameInfo.userMarble -= +thinkNumber;
-          console.log('Gamer: ' + gameInfo.userMarble);
-          console.log('Comp: ' + gameInfo.computerMarble);
+          alert(
+            // eslint-disable-next-line max-len
+            `Ваш выбор: ${thinkNumber}; Выбор компьютера: ${guessesNumber}
+            Gamer: ${gameInfo.userMarble}
+            Comp: ${gameInfo.computerMarble}`,
+          );
         } else {
           gameInfo.computerMarble -= +thinkNumber;
           gameInfo.userMarble += +thinkNumber;
-          console.log('Gamer: ' + gameInfo.userMarble);
-          console.log('Comp: ' + gameInfo.computerMarble);
+          alert(
+            // eslint-disable-next-line max-len
+            `Ваш выбор: ${thinkNumber}; Выбор компьютера: ${guessesNumber}
+            Gamer: ${gameInfo.userMarble}
+            Comp: ${gameInfo.computerMarble}`,
+          );
         }
       };
 
@@ -60,22 +74,21 @@
         );
 
         if (userChoice === null) {
-          console.log('Вы вышли из игры');
+          document.querySelector('#resultMarbles').textContent =
+            'Вы просто вышли из игры';
+          document.querySelector('#game_mainwrapper').style.display = 'flex';
           return null;
         } else if (
           !Number.isInteger(+userChoice) ||
           userChoice < 1 ||
           userChoice > gameInfo.computerMarble
         ) {
-          console.log('Введите данные из требуемого диапазона');
+          alert('Введите данные из требуемого диапазона');
           return playerMove();
         } else {
           const computerChoiceNumber = getRandomIntInclusive(
             1,
             gameInfo.userMarble,
-          );
-          console.log(
-            `user choice: ${userChoice}; comp choice: ${computerChoiceNumber}`,
           );
           compareGamers(userChoice, computerChoiceNumber);
           resultGameWindow(
@@ -98,11 +111,6 @@
           1,
           gameInfo.userMarble,
         );
-        console.log(
-          `user choice: ${
-            notEvenNumber + 1
-          }; comp choice: ${computerChoiceNumber}`,
-        );
         compareGamers(computerChoiceNumber, notEvenNumber);
 
         resultGameWindow(
@@ -114,25 +122,21 @@
 
       (function whoFirstMoveMarble() {
         if (whoWinPrevGame === 'playerWin') {
-          console.group(
-            'Вы выиграли в предыдущей игре, поэтому вы ходите первым',
-          );
+          alert('Вы выиграли в предыдущей игре, поэтому вы ходите первым');
           playerMove();
         } else if (whoWinPrevGame === 'computerWin') {
-          console.group(
-            'Компьютер выиграл в предыдущей игре, поэтому он ходит первым',
-          );
+          alert('Компьютер выиграл в предыдущей игре, поэтому он ходит первым');
           computerMove();
         } else if (whoWinPrevGame === 'draw') {
           const coinToss = getRandomIntInclusive(0, 1);
           if (coinToss === 1) {
-            console.group(
+            alert(
               // eslint-disable-next-line max-len
               'Вы сыграли в ничью, поэтому путем подбрасывания монеты великий рандом решил, что вы ходите первым',
             );
             playerMove();
           } else {
-            console.group(
+            alert(
               // eslint-disable-next-line max-len
               'Вы сыграли в ничью, поэтому путем подбрасывания монеты великий рандом решил, что компьютер ходит первым',
             );

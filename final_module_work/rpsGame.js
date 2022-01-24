@@ -68,18 +68,30 @@
             resultGame = `${gameLanguage[7]}`;
             window.resultRpsGame = 'draw';
           }
-          console.log(`${resultGame}
-          ${gameLanguage[8]}: ${result.player}
-          ${gameLanguage[9]}: ${result.computer}`);
+
+          document.querySelector('#resultRPS').innerHTML = `
+          <p>${resultGame}</p>
+          <p>${gameLanguage[8]}: ${result.player}</p>
+          <p>${gameLanguage[9]}: ${result.computer}</p>`;
+
+          alert(
+            `${resultGame}
+            ${gameLanguage[8]}: ${result.player}
+            ${gameLanguage[9]}: ${result.computer}`,
+          );
         } else return start();
         // END option "exit block and table leaders"
+      } else if (userСhoice === '') {
+        start();
       } else {
         const userChoiceFirstLetter = userСhoice[0].toLowerCase();
-        console.log(userChoiceFirstLetter);
 
         const computerChoiceFirstLetter =
           gameLanguage[getRandomIntInclusive(0, 2)][0];
-        console.log(computerChoiceFirstLetter);
+        alert(
+          // eslint-disable-next-line max-len
+          `${gameLanguage[8]}: ${userChoiceFirstLetter} | ${gameLanguage[9]}: ${computerChoiceFirstLetter}`,
+        );
         // battle logic
         if (
           // камень/rock - [0]; ножницы/scissors - [1]; бумага/paper - [2]
@@ -92,8 +104,17 @@
         ) {
           result.player++;
           return start();
-        } else {
+        } else if (
+          (computerChoiceFirstLetter === gameLanguage[0][0] &&
+            userChoiceFirstLetter === gameLanguage[1][0]) ||
+          (computerChoiceFirstLetter === gameLanguage[1][0] &&
+            userChoiceFirstLetter === gameLanguage[2][0]) ||
+          (computerChoiceFirstLetter === gameLanguage[2][0] &&
+            userChoiceFirstLetter === gameLanguage[0][0])
+        ) {
           result.computer++;
+          return start();
+        } else {
           return start();
         }
         // END battle logic

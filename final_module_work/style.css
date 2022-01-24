@@ -1,0 +1,25 @@
+.game_mainwrapper {
+  display: none;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.game_wrapper {
+  width: 60%;
+  text-align: center;
+  padding: 30px;
+  background-color: rgb(245, 245, 245);
+  box-shadow: 7px 13px 21px 5px rgb(0 0 0 / 11%);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.game_title_wrapper {
+  font-size: 24px;
+  font-family: roboto, sansserif;
+}
+
+.game_exit {
+  font-weight: 700;
+}
