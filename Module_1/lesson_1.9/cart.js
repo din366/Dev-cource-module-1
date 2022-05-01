@@ -14,7 +14,6 @@ Cart.prototype.calculateGoodsPrice = function() {
 };
 
 Cart.prototype.addGoods = function({count, name, price, ...other}) {
-  /* {count, price, name} = item; */
   this.goods.push({count, name, price, ...other});
   this.increaseCount(count);
   this.totalPrice += price * count;
